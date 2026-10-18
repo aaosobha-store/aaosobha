@@ -4,9 +4,17 @@
     --brand-red-soft: #fff1f2;
     --text-primary: #292525;
     --text-secondary: #777070;
+    --page-bg: #ffffff;
     --surface: rgba(255, 255, 255, 0.94);
+    --link-surface: #ffffff;
     --border: #f0d8d9;
+    --subtle-border: #edc2c4;
+    --icon-muted: #b9a5a5;
+    --footer-text: #958b8b;
     --shadow: 0 24px 70px rgba(117, 24, 29, 0.11);
+    --toggle-bg: #fff1f2;
+    --toggle-border: #f0d8d9;
+    --toggle-text: #8d171b;
     --transition: 220ms ease;
 }
 
@@ -21,6 +29,55 @@ html {
     color-scheme: light;
 }
 
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --brand-red: #ff4b54;
+    --brand-red-dark: #d71920;
+    --brand-red-soft: rgba(255, 75, 84, 0.13);
+    --text-primary: #f5f1f1;
+    --text-secondary: #b9afb1;
+    --page-bg: #121112;
+    --surface: rgba(31, 28, 29, 0.96);
+    --link-surface: #272324;
+    --border: #49383a;
+    --subtle-border: #594044;
+    --icon-muted: #a99a9d;
+    --footer-text: #a99fa1;
+    --shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+    --toggle-bg: #302426;
+    --toggle-border: #59383c;
+    --toggle-text: #ffd8da;
+}
+
+html[data-theme="dark"] body {
+    background: var(--page-bg);
+}
+
+html[data-theme="dark"] .background-decoration {
+    background:
+        radial-gradient(ellipse at 8% 8%, rgba(215, 25, 32, 0.15), transparent 36%),
+        radial-gradient(ellipse at 94% 88%, rgba(215, 25, 32, 0.11), transparent 34%),
+        var(--page-bg);
+}
+
+html[data-theme="dark"] .background-decoration::before,
+html[data-theme="dark"] .background-decoration::after {
+    border-color: rgba(255, 75, 84, 0.13);
+    box-shadow: 0 0 0 24px rgba(255, 75, 84, 0.035), 0 0 0 48px rgba(255, 75, 84, 0.025);
+}
+
+html[data-theme="dark"] .profile-logo-wrap {
+    background: #ffffff;
+}
+
+html[data-theme="dark"] .whatsapp-link .link-icon {
+    background: rgba(37, 211, 102, 0.14);
+}
+
+html[data-theme="dark"] .tiktok-link {
+    --link-color: #f5f1f1;
+}
+
 body {
     position: relative;
     isolation: isolate;
@@ -30,7 +87,7 @@ body {
     min-height: 100vh;
     padding: 2.5rem 1rem;
     overflow-x: hidden;
-    background: #fff;
+    background: var(--page-bg);
     color: var(--text-primary);
     font-family: 'Outfit', sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -45,7 +102,7 @@ body {
     background:
         radial-gradient(ellipse at 8% 8%, rgba(215, 25, 32, 0.07), transparent 35%),
         radial-gradient(ellipse at 94% 88%, rgba(215, 25, 32, 0.06), transparent 32%),
-        #fff;
+        var(--page-bg);
 }
 
 .background-decoration::before,
@@ -100,6 +157,44 @@ body {
     margin-bottom: 1.8rem;
 }
 
+.top-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin: -0.55rem -0.35rem 0.75rem;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 38px;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--toggle-border);
+    border-radius: 999px;
+    background: var(--toggle-bg);
+    color: var(--toggle-text);
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition), border-color var(--transition), color var(--transition), transform var(--transition);
+}
+
+.theme-toggle i {
+    font-size: 0.9rem;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-1px);
+    border-color: var(--brand-red);
+}
+
+.theme-toggle:focus-visible {
+    outline: 3px solid rgba(215, 25, 32, 0.3);
+    outline-offset: 3px;
+}
+
 .profile-logo-wrap {
     width: min(100%, 255px);
     margin: 0 auto 0.6rem;
@@ -152,7 +247,7 @@ body {
     width: 42px;
     height: 1px;
     content: '';
-    background: #edc2c4;
+    background: var(--subtle-border);
 }
 
 .brand-rule span {
@@ -186,7 +281,7 @@ body {
     overflow: hidden;
     border: 1px solid var(--border);
     border-radius: 15px;
-    background: #fff;
+    background: var(--link-surface);
     color: var(--text-primary);
     text-decoration: none;
     font-size: 1.02rem;
@@ -223,7 +318,7 @@ body {
 
 .link-arrow {
     margin-left: 0.6rem;
-    color: #b9a5a5;
+    color: var(--icon-muted);
     font-size: 0.8rem;
     transition: color var(--transition), transform var(--transition);
 }
@@ -270,7 +365,7 @@ body {
     justify-content: center;
     gap: 0.45rem;
     margin-top: 1.7rem;
-    color: #958b8b;
+    color: var(--footer-text);
     text-align: center;
     font-size: 0.78rem;
 }
@@ -323,6 +418,16 @@ body {
 
     .profile {
         margin-bottom: 1.35rem;
+    }
+
+    .top-controls {
+        margin: -0.25rem -0.2rem 0.6rem;
+    }
+
+    .theme-toggle {
+        min-height: 36px;
+        padding: 0.45rem 0.7rem;
+        font-size: 0.78rem;
     }
 
     .profile-logo-wrap {

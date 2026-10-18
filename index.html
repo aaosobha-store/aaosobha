@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#d71920">
+    <meta name="theme-color" content="#ffffff">
     <title>AAO SOBHA | Agent Agréé Ooredoo</title>
     <meta name="description" content="Connect with AAO SOBHA, your approved Ooredoo agent, on social media or WhatsApp.">
 
@@ -11,12 +11,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        (() => {
+            let theme = null;
+            try { theme = localStorage.getItem('aao-sobha-theme'); } catch (_) {}
+            if (theme !== 'light' && theme !== 'dark') {
+                theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            document.documentElement.dataset.theme = theme;
+        })();
+    </script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="background-decoration" aria-hidden="true"></div>
 
     <main class="container">
+        <div class="top-controls">
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+                <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                <span>Dark mode</span>
+            </button>
+        </div>
+
         <header class="profile">
             <div class="profile-logo-wrap">
                 <img
@@ -49,6 +66,12 @@
             <a href="https://www.facebook.com/aaosobha" target="_blank" rel="noopener noreferrer" class="link-item facebook-link">
                 <span class="link-icon"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></span>
                 <span class="link-text">Facebook</span>
+                <i class="fa-solid fa-arrow-up-right-from-square link-arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://tr.ee/FmqTsXEMqR" target="_blank" rel="noopener noreferrer" class="link-item links-hub-link">
+                <span class="link-icon"><i class="fa-solid fa-link" aria-hidden="true"></i></span>
+                <span class="link-text">All our links</span>
                 <i class="fa-solid fa-arrow-up-right-from-square link-arrow" aria-hidden="true"></i>
             </a>
 
